@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Método LinguagemAtiva - eBook para Fonoaudiólogas</title>
     <meta name="description" content="eBook com metodologia prática para desenvolvimento da linguagem infantil. Ideal para fonoaudiólogas em formação e educadores.">
-    <link rel="icon" href="./public/logotipo-met-fonico.png">
+    <link rel="icon" href="./assets/images/logotipo-metodo-fonico.png">
     <link rel="stylesheet" href="./assets/css/style.css">
 
     <!-- Tailwind CSS -->
@@ -16,6 +16,15 @@
     
 </head>
 <body class="bg-background text-foreground">
+
+    <!-- Temporizador -->
+    <!-- <div id="timer-bar" class="bg-red-600 text-white text-center py-2 text-sm font-semibold">
+        ⏳⏰ Oferta expira em: <span id="countdown">15:00</span>
+    </div> -->
+    <div id="timer-bar" class="fixed top-0 left-0 w-full z-50 bg-red-600 text-white text-center py-4 px-6 shadow-md text-lg sm:text-xl font-bold tracking-wide">
+        ⏳ Oferta por tempo limitado! <span class="ml-2">Expira em <span id="countdown" class="inline-block w-20 font-mono bg-white text-red-600 px-3 py-1 rounded-md shadow-inner">15:00</span></span>
+    </div>
+
 
     <!-- Hero Section -->
     <section class="py-20 bg-soft-blue">
@@ -50,7 +59,7 @@
                 
                 <div class="relative">
                     <img 
-                        src="src/assets/hero-speech-therapy.jpg" 
+                        src="./assets/images/hero-speech-therapy.jpg" 
                         alt="Fonoaudióloga trabalhando com criança" 
                         class="rounded-2xl shadow-2xl w-full"
                     />
@@ -187,7 +196,7 @@
             <div class="card p-2 max-w-4xl mx-auto">
                 <div class="video-container rounded-lg overflow-hidden bg-gray-100">
                     <video controls>
-                    <source src="./public/fono.mp4" type="video/mp4">
+                    <source src="./assets/videos/fono.mp4" type="video/mp4">
                     Seu navegador não suporta vídeo HTML5.
                     </video>
                 </div>
@@ -483,13 +492,13 @@
                 
                 <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 mb-8 max-w-md mx-auto">
                     <div class="text-center">
-                        <div class="text-sm text-white/80 mb-2">Investimento:</div>
+                        <div class="text-sm text-white/80 mb-2">De <del class="text-red-500">R$ 97</del> por apenas</div>
                         <div class="text-4xl md:text-5xl font-bold mb-2">R$ 47</div>
                         <div class="text-white/80">Acesso vitalício</div>
                     </div>
                 </div>
                 
-                <a href="#" class="btn-primary bg-white text-primary hover:bg-white/90 text-lg mb-6 inline-block">
+                <a href="#" class="inline-block bg-gradient-to-r from-pink-500 to-rose-500 text-white text-lg font-semibold py-3 px-6 rounded-xl shadow-md hover:translate-y-[-3px] hover:shadow-lg transition-transform duration-300 mb-8">
                     <i data-lucide="download" class="w-5 h-5 inline mr-2"></i>
                     Quero Acessar o eBook Agora
                 </a>
@@ -606,7 +615,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 bg-foreground text-white">
+    <footer class="py-12 text-white" style="background-color: rgb(0, 0, 112);">
         <div class="container mx-auto px-4 max-w-6xl">
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="space-y-4">
@@ -691,6 +700,23 @@
                 }
             });
         });
+
+        // temporizador
+        let duration = 15 * 60; // 15 minutos em segundos
+        const countdownElement = document.getElementById("countdown");
+
+        const timer = setInterval(() => {
+            const minutes = Math.floor(duration / 60);
+            const seconds = duration % 60;
+            countdownElement.textContent = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+            duration--;
+
+            if (duration < 0) {
+            clearInterval(timer);
+            countdownElement.textContent = "00:00";
+            // document.getElementById("timer-bar").style.display = "none";
+            }
+        }, 1000);
     </script>
 </body>
 </html>
