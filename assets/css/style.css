@@ -107,3 +107,37 @@
     content: attr(data-icon);
     flex-shrink: 0;
 }
+
+.marquee {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll-left 20s linear infinite;
+}
+
+/* Efeito de loop contínuo */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Remove possíveis barras de rolagem verticais */
+body {
+  overflow-x: hidden;
+}
+
+/* Carrossel de depoimentos */
+#testimonialTrack {
+  padding-bottom: 40px; /* espaço extra para sombra */
+}
+.testimonial-card {
+  margin-bottom: -20px; /* levanta a sombra para fora do container */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12); /* sombra suave e flutuante */
+  transition: transform 0.3s;
+}
+.testimonial-card:hover {
+  transform: translateY(-5px);
+}

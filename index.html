@@ -18,16 +18,24 @@
 <body class="bg-background text-foreground">
 
     <!-- Temporizador -->
-    <!-- <div id="timer-bar" class="bg-red-600 text-white text-center py-2 text-sm font-semibold">
-        ⏳⏰ Oferta expira em: <span id="countdown">15:00</span>
+    <!-- <div id="timer-bar" class="fixed top-0 left-0 w-full z-50 bg-red-600 text-white text-center py-2 px-3 shadow-md text-sm sm:text-base font-semibold tracking-normal">
+        ⏳ Oferta por tempo limitado! <span class="ml-1">Expira em <span id="countdown" class="inline-block w-16 font-mono bg-white text-red-600 px-2 py-0.5 rounded-md shadow-inner">15:00</span></span>
     </div> -->
-    <div id="timer-bar" class="fixed top-0 left-0 w-full z-50 bg-red-600 text-white text-center py-4 px-6 shadow-md text-lg sm:text-xl font-bold tracking-wide">
-        ⏳ Oferta por tempo limitado! <span class="ml-2">Expira em <span id="countdown" class="inline-block w-20 font-mono bg-white text-red-600 px-3 py-1 rounded-md shadow-inner">15:00</span></span>
+
+    <!-- Faixa com texto rolando -->
+    <div class="w-full bg-blue-900 text-white font-medium py-2 overflow-hidden relative">
+        <div class="marquee whitespace-nowrap">
+            <span class="mx-8">
+            📘 Transforme sua prática com o Projeto Linguagem Ativa — Método Fônico aplicado de forma simples e eficiente — Recursos pedagógicos funcionais para educadores e terapeutas — Baixe agora o eBook profissional!
+            </span>
+            <span class="mx-8">
+            📘 Transforme sua prática com o Projeto Linguagem Ativa — Método Fônico aplicado de forma simples e eficiente — Recursos pedagógicos funcionais para educadores e terapeutas — Baixe agora o eBook profissional!
+            </span>
+        </div>
     </div>
 
-
     <!-- Hero Section -->
-    <section class="pt-32 py-20 bg-soft-blue">
+    <section class="py-20 bg-soft-blue">
         <div class="container mx-auto px-4 max-w-6xl">
             <div class="grid lg:grid-cols-2 gap-12 items-center">
                 <div class="space-y-8">
@@ -45,7 +53,7 @@
                     </p>
                     
                     <div class="flex flex-col sm:flex-row gap-4">
-                        <a href="#cta" class="btn-primary text-lg">
+                        <a href="https://pay.kiwify.com.br/sOOlMpr" target="_blank" class="btn-primary text-lg">
                             Quero o eBook Agora
                         </a>
                         <a href="#video" class="flex items-center gap-2 px-6 py-3 border border-border rounded-lg text-foreground hover:bg-soft-blue transition-colors">
@@ -190,14 +198,22 @@
                 </p>
             </div>
 
-            <div class="card p-2 max-w-4xl mx-auto">
-                <div class="video-container rounded-lg overflow-hidden bg-gray-100">
-                    <video controls>
+            <div class="relative max-w-4xl mx-auto rounded-lg overflow-hidden shadow-md">
+                <div id="video-cover" class="relative cursor-pointer group">
+                    <img src="./assets/images/capa-fono.png" alt="Capa do vídeo" class="w-full h-auto">
+                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center">
+                        <div class="bg-white/90 rounded-full p-4 transition-transform duration-300 group-hover:scale-110">
+                            ▶
+                        </div>
+                    </div>
+                </div>
+
+                <video id="video-player" class="hidden w-full rounded-lg" controls>
                     <source src="./assets/videos/fono.mp4" type="video/mp4">
                     Seu navegador não suporta vídeo HTML5.
-                    </video>
-                </div>
+                </video>
             </div>
+
         </div>
     </section>
 
@@ -212,7 +228,7 @@
                     
                     <h2 class="text-3xl md:text-4xl font-bold text-foreground">
                         Metodologia criada por
-                        <span class="text-primary">especialista renomada</span>
+                        <span class="text-primary">profissional experiente e inovadora</span>
                     </h2>
                     
                     <div class="space-y-4 text-lg text-muted-foreground leading-relaxed">
@@ -377,7 +393,7 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section class="py-20 bg-soft-blue">
+    <!-- <section class="py-20 bg-soft-blue">
         <div class="container mx-auto px-4 max-w-6xl">
             <div class="text-center mb-16">
                 <div class="inline-flex items-center gap-2 bg-card text-primary px-4 py-2 rounded-full text-sm font-medium mb-6 shadow-sm">
@@ -471,10 +487,133 @@
                 </div>
             </div>
         </div>
+    </section> -->
+    <!-- Seção de Depoimentos -->
+    <section id="depoimentos" class="bg-blue-50 py-24 relative overflow-hidden">
+        <div class="container mx-auto px-4 max-w-12xl text-center">
+            <div class="inline-flex items-center gap-2 bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-medium mb-8 border border-blue-200">
+                💬 Depoimentos
+            </div>
+
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                O que dizem os profissionais que <span class="text-blue-600">aplicam o Projeto Linguagem Ativa</span>
+            </h2>
+            <p class="text-gray-600 mb-12">
+                Depoimentos reais de profissionais que transformaram sua prática com a metodologia.
+            </p>
+
+            <!-- Container principal -->
+            <div class="relative flex items-center justify-center">
+                <!-- Botão anterior -->
+                <button id="prevBtn"
+                    class="absolute left-1 sm:-left-6 md:-left-10 lg:-left-14 bg-white text-blue-600 shadow-lg p-2 sm:p-3 md:p-4 rounded-full hover:bg-blue-600 hover:text-white transition z-10">
+                    ‹
+                </button>
+
+                <!-- Trilho de depoimentos -->
+                <div id="testimonialTrack"
+                    class="flex gap-6 overflow-hidden scroll-smooth px-4 md:px-10">
+                    
+                    <!-- CARD -->
+                    <div
+                        class="testimonial-card flex-shrink-0 w-[85vw] sm:w-[400px] md:w-[480px] lg:w-[520px] bg-white shadow-2xl rounded-3xl p-8 md:p-10 flex flex-col justify-between min-h-[340px]">
+                        <div>
+                            <div class="flex text-yellow-400 mb-3 text-lg">★★★★★</div>
+                            <p class="italic text-gray-700 leading-relaxed">
+                                "O Projeto Linguagem Ativa revolucionou minha prática clínica. Os protocolos são claros e os resultados com as crianças são impressionantes!"
+                            </p>
+                        </div>
+                        <div class="border-t border-gray-200 my-5"></div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-lg">
+                                D
+                            </div>
+                            <div class="text-left">
+                                <p class="font-semibold text-gray-900 text-base md:text-lg">Dra. Letícia</p>
+                                <p class="text-sm text-gray-500">Fonoaudióloga — CRFa 1-2356</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 2 -->
+                    <div
+                        class="testimonial-card flex-shrink-0 w-[85vw] sm:w-[400px] md:w-[480px] lg:w-[520px] bg-white shadow-2xl rounded-3xl p-8 md:p-10 flex flex-col justify-between min-h-[340px]">
+                        <div>
+                            <div class="flex text-yellow-400 mb-3 text-lg">★★★★★</div>
+                            <p class="italic text-gray-700 leading-relaxed">
+                                "Implementamos as técnicas na escola e vimos uma melhora significativa na comunicação das crianças. Material indispensável para educadores!"
+                            </p>
+                        </div>
+                        <div class="border-t border-gray-200 my-5"></div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-lg">
+                                P
+                            </div>
+                            <div class="text-left">
+                                <p class="font-semibold text-gray-900 text-base md:text-lg">Prof. Marina</p>
+                                <p class="text-sm text-gray-500">Coordenadora Pedagógica</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 3 -->
+                    <div
+                        class="testimonial-card flex-shrink-0 w-[85vw] sm:w-[400px] md:w-[480px] lg:w-[520px] bg-white shadow-2xl rounded-3xl p-8 md:p-10 flex flex-col justify-between min-h-[340px]">
+                        <div>
+                            <div class="flex text-yellow-400 mb-3 text-lg">★★★★★</div>
+                            <p class="italic text-gray-700 leading-relaxed">
+                                "O conteúdo é didático e direto ao ponto. As crianças evoluem perceptivelmente em pouco tempo — resultado de um método muito bem estruturado."
+                            </p>
+                        </div>
+                        <div class="border-t border-gray-200 my-5"></div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-lg">
+                                C
+                            </div>
+                            <div class="text-left">
+                                <p class="font-semibold text-gray-900 text-base md:text-lg">Carla Mendes</p>
+                                <p class="text-sm text-gray-500">Fonoaudióloga Clínica</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CARD 4 -->
+                    <div
+                        class="testimonial-card flex-shrink-0 w-[85vw] sm:w-[400px] md:w-[480px] lg:w-[520px] bg-white shadow-2xl rounded-3xl p-8 md:p-10 flex flex-col justify-between min-h-[340px]">
+                        <div>
+                            <div class="flex text-yellow-400 mb-3 text-lg">★★★★★</div>
+                            <p class="italic text-gray-700 leading-relaxed">
+                                "Recomendo a todos os profissionais da área! O material é de alta qualidade e trouxe uma nova visão para meus atendimentos."
+                            </p>
+                        </div>
+                        <div class="border-t border-gray-200 my-5"></div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold text-lg">
+                                A
+                            </div>
+                            <div class="text-left">
+                                <p class="font-semibold text-gray-900 text-base md:text-lg">Ana Paula</p>
+                                <p class="text-sm text-gray-500">Psicopedagoga</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botão próximo -->
+                <button id="nextBtn"
+                    class="absolute right-1 sm:-right-6 md:-right-10 lg:-right-14 bg-white text-blue-600 shadow-lg p-2 sm:p-3 md:p-4 rounded-full hover:bg-blue-600 hover:text-white transition z-10">
+                    ›
+                </button>
+            </div>
+
+            <p class="mt-10 text-gray-600 text-sm">
+                <strong>💡 Quer ver seu depoimento aqui?</strong> Aplique as estratégias do eBook e compartilhe seus resultados conosco!
+            </p>
+        </div>
     </section>
 
     <!-- CTA Section -->
-    <section id="cta" class="py-20 gradient-primary">
+    <!-- <section id="cta" class="py-20 gradient-primary">
         <div class="container mx-auto px-4 max-w-4xl">
             <div class="text-center text-white">
                 <div class="inline-flex items-center gap-2 bg-white/10 text-white px-4 py-2 rounded-full text-sm font-medium mb-8 border border-white/20">
@@ -493,13 +632,13 @@
                 
                 <div class="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 mb-8 max-w-md mx-auto">
                     <div class="text-center">
-                        <div class="text-sm text-white/80 mb-2">De <del class="text-red-500">R$ 97</del> por apenas</div>
-                        <div class="text-4xl md:text-5xl font-bold mb-2">R$ 47</div>
+                        <div class="text-sm text-white/80 mb-2">De <del class="text-red-500">R$ 297,00</del> por apenas</div>
+                        <div class="text-4xl md:text-5xl font-bold mb-2">R$ 147,00</div>
                         <div class="text-white/80">Acesso vitalício</div>
                     </div>
                 </div>
                 
-                <a href="#" class="inline-block bg-gradient-to-r from-pink-500 to-rose-500 text-white text-lg font-semibold py-3 px-6 rounded-xl shadow-md hover:translate-y-[-3px] hover:shadow-lg transition-transform duration-300 mb-8">
+                <a href="https://pay.kiwify.com.br/sOOlMpr" target="_blank" class="inline-block bg-gradient-to-r from-pink-500 to-rose-500 text-white text-lg font-semibold py-3 px-6 rounded-xl shadow-md hover:translate-y-[-3px] hover:shadow-lg transition-transform duration-300 mb-8">
                     <i data-lucide="download" class="w-5 h-5 inline mr-2"></i>
                     Quero Acessar o eBook Agora
                 </a>
@@ -526,7 +665,79 @@
                 </div>
             </div>
         </div>
+    </section> -->
+    <!-- CTA Section -->
+    <section id="cta" class="py-24 bg-gradient-to-b from-[#0a1a3a] via-[#0d2b66] to-[#0056ff] relative overflow-hidden">
+        <div class="container mx-auto px-6 max-w-5xl text-center text-white relative z-10">
+
+            <!-- Oferta -->
+            <div class="inline-flex items-center gap-2 bg-white/15 text-white px-5 py-2 rounded-full text-sm font-semibold mb-8 border border-white/30 shadow-md backdrop-blur-sm">
+            🚀 Oferta Especial
+            </div>
+
+            <!-- Título principal -->
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
+                Transforme sua prática profissional
+                <span class="text-[#FFD700]">hoje mesmo</span>
+            </h2>
+
+            <!-- Subtítulo -->
+            <p class="text-lg md:text-xl text-blue-100 max-w-3xl mx-auto mb-12 leading-relaxed">
+                Acesse agora o eBook completo com metodologia validada e
+                <strong class="text-white font-semibold">comece a aplicar as técnicas imediatamente.</strong>
+            </p>
+
+            <!-- Bloco de preço -->
+            <div class="bg-white/10 backdrop-blur-lg border border-white/25 rounded-3xl p-10 mb-10 max-w-md mx-auto shadow-2xl">
+                <div class="text-center">
+                    <div class="text-sm text-white/85 mb-3 font-medium">
+                        De 
+                        <del class="text-[#ff4444] font-bold text-lg bg-white/10 px-2 py-0.5 rounded-md inline-block">
+                            R$ 297,00
+                        </del>
+                        por apenas
+                    </div>
+                    <div class="text-6xl font-extrabold mb-2 text-[#ffffff] drop-shadow-lg">R$ 147,00</div>
+                    <div class="text-blue-100 font-medium tracking-wide">Acesso vitalício</div>
+                </div>
+            </div>
+
+            <!-- Botão -->
+            <a href="https://pay.kiwify.com.br/sOOlMpr" target="_blank"
+            class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[#0046FF] to-[#2D8EFF] text-white text-lg font-semibold py-4 px-10 rounded-2xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                <i data-lucide="download" class="w-5 h-5"></i>
+                Quero Acessar o eBook Agora
+            </a>
+
+            <!-- Benefícios -->
+            <div class="flex flex-wrap justify-center gap-8 text-sm text-blue-100 mt-10">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4"></i>
+                    Acesso imediato
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4"></i>
+                    Material atualizado
+                </div>
+                <div class="flex items-center gap-2">
+                    <i data-lucide="check" class="w-4 h-4"></i>
+                    Suporte por email
+                </div>
+            </div>
+
+            <!-- Observação -->
+            <p class="text-blue-200 text-sm mt-8 bg-white/10 border border-white/20 inline-block px-5 py-2 rounded-xl backdrop-blur-sm">
+                📧 O eBook será enviado para seu email imediatamente após a confirmação do pagamento.
+            </p>
+        </div>
+
+        <!-- Efeitos de fundo -->
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05)_0%,transparent_70%)]"></div>
+        <div class="absolute -top-20 -left-20 w-[300px] h-[300px] bg-[#007bff]/20 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 right-0 w-[250px] h-[250px] bg-[#0046FF]/30 rounded-full blur-2xl"></div>
     </section>
+
+
 
     <!-- FAQ Section -->
     <section class="py-20 bg-background">
@@ -616,11 +827,11 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 text-white" style="background-color: rgb(2, 2, 39);">
+    <footer class="py-12 text-white bg-blue-900">
         <div class="container mx-auto px-4 max-w-6xl">
             <div class="grid md:grid-cols-3 gap-8">
                 <div class="space-y-4">
-                    <h3 class="text-2xl font-bold gradient-primary bg-clip-text text-transparent">
+                    <h3 class="text-2xl font-bold gradient-primary bg-clip-text">
                         Projeto Linguagem Ativa
                     </h3>
                     <p class="text-white/80 leading-relaxed">
@@ -642,8 +853,8 @@
                     <h4 class="font-semibold mb-4">Suporte</h4>
                     <ul class="space-y-2 text-white/80">
                         <li>
-                            <a href="mailto:contato@linguagemativa.com" class="hover:text-white transition-colors">
-                                contato@linguagemativa.com
+                            <a href="mailto:aletrulha@hotmail.com" class="hover:text-white transition-colors">
+                                aletrulha@hotmail.com
                             </a>
                         </li>
                         <li>
@@ -702,7 +913,7 @@
             });
         });
 
-        // temporizador
+        // Temporizador
         let duration = 15 * 60; // 15 minutos em segundos
         const countdownElement = document.getElementById("countdown");
 
@@ -718,6 +929,70 @@
             // document.getElementById("timer-bar").style.display = "none";
             }
         }, 1000);
+
+        // Vídeo de apresentação
+        document.getElementById('video-cover').addEventListener('click', function() {
+            this.style.display = 'none';
+            const video = document.getElementById('video-player');
+            video.classList.remove('hidden');
+            video.play();
+        });
+
+        // Carrossel de depoimentos responsivo
+        const track = document.getElementById("testimonialTrack");
+        const nextBtn = document.getElementById("nextBtn");
+        const prevBtn = document.getElementById("prevBtn");
+        let autoScroll;
+
+        // Função que retorna a largura real de um card (incluindo gap)
+        const getCardWidth = () => {
+            const card = track.querySelector(".testimonial-card");
+            if (!card) return 0;
+            const style = window.getComputedStyle(card);
+            const gap = parseInt(style.marginRight) || 24; // gap aproximado entre os cards
+            return card.offsetWidth + gap;
+        };
+
+        // Funções de scroll
+        const scrollRight = () => {
+            const cardWidth = getCardWidth();
+            if (track.scrollLeft + track.offsetWidth >= track.scrollWidth - 10) {
+                track.scrollTo({ left: 0, behavior: "smooth" }); // loop infinito
+            } else {
+                track.scrollBy({ left: cardWidth, behavior: "smooth" });
+            }
+        };
+
+        const scrollLeft = () => {
+            const cardWidth = getCardWidth();
+            if (track.scrollLeft <= 0) {
+                track.scrollTo({ left: track.scrollWidth, behavior: "smooth" }); // loop infinito
+            } else {
+                track.scrollBy({ left: -cardWidth, behavior: "smooth" });
+            }
+        };
+
+        // Eventos dos botões
+        nextBtn.addEventListener("click", scrollRight);
+        prevBtn.addEventListener("click", scrollLeft);
+
+        // Auto-scroll
+        function startAutoScroll() {
+            autoScroll = setInterval(scrollRight, 4000);
+        }
+        function stopAutoScroll() {
+            clearInterval(autoScroll);
+        }
+
+        track.addEventListener("mouseenter", stopAutoScroll);
+        track.addEventListener("mouseleave", startAutoScroll);
+        startAutoScroll();
+
+        // Recalcular largura ao redimensionar a tela
+        window.addEventListener("resize", () => {
+            stopAutoScroll();
+            startAutoScroll();
+        });
     </script>
 </body>
 </html>
